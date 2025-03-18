@@ -13,7 +13,6 @@ export const useForm = ( initialForm = {}, formValidations = {} ) => {
     const isFormValid = useMemo( () => {
 
         for (const formValue of Object.keys( formValidation )) {
-            console.log(formValidation[formValue])
             if ( formValidation[formValue] !== null ) return false;
         }
 
@@ -45,7 +44,6 @@ export const useForm = ( initialForm = {}, formValidations = {} ) => {
         }
 
         setFormValidation( formCheckedValues );
-        console.log(formCheckedValues);
     }
 
     return {
