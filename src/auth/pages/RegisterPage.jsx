@@ -3,11 +3,11 @@ import { Link as RouterLink } from "react-router-dom";
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import { Button, Link } from '@mui/material';
+import { Alert, Button, Link } from '@mui/material';
 import { AuthLayout } from "../layout/AuthLayout";
 import { useForm } from "../../hooks/useForm";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { startCreatingUserWithEmailPassword } from "../../store/auth";
 
 const formData = {
@@ -26,6 +26,12 @@ const formValidations = {
 export const RegisterPage = () => {
 
   const [formSubmited, setFormSubmited] = useState(false);
+
+
+  const { status, errorMessage } = useSelector( state => state.auth ); 
+
+  const isCheckingAuthentication = useMemo(() => status === 'checking', [status]);
+
 
   const dispatch = useDispatch();
 
@@ -94,8 +100,21 @@ export const RegisterPage = () => {
 
           <Grid container sx={{ mb: 2, mt: 1 }}>
 
+            <Grid 
+              xs={12} 
+              sx={{ mt: 2 }} 
+              display={ !!errorMessage ? '' : 'none' }
+            >
+              <Alert severity="error">{ errorMessage }</Alert>
+            </Grid>
+
             <Grid xs={12} sx={{ mt: 2 }} >
-              <Button variant="contained" type="submit" fullWidth>
+              <Button 
+                disabled={ isCheckingAuthentication }
+                variant="contained" 
+                type="submit" 
+                fullWidth
+              >
                 Crear Cuenta
               </Button>
             </Grid>
