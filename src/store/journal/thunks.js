@@ -31,7 +31,6 @@ export const startNewNote = () => {
 };
 
 
-
 export const startLoadingNotes = () => {
     return async( dispatch, getState ) => {
 
@@ -41,7 +40,6 @@ export const startLoadingNotes = () => {
         const notes = await loadNotes( uid );
 
         dispatch( setNotes( notes ) );  
-
     }
 }
 
