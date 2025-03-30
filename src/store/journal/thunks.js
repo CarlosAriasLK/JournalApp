@@ -1,6 +1,6 @@
 import { collection, doc, setDoc } from "firebase/firestore/lite";
 import { FirebaseDB } from "../../firebase/config";
-import { addNewEmptyNote, savingNewNote, setActiveNote, setNotes, setSaving, updateNote } from "./journalSlice";
+import { addNewEmptyNote, savingNewNote, setActiveNote, setFotosToActiveNote, setNotes, setSaving, updateNote } from "./journalSlice";
 import { fileUpload, loadNotes } from "../../helpers";
 
 
@@ -68,7 +68,15 @@ export const startUploadingFiles = ( files = [] ) => {
 
         dispatch( setSaving() );
 
-        await fileUpload( files[0] );       
+        const fileUploadPromises = [];
+
+        for ( const file of files ) {
+            fileUploadPromises.push( fileUpload( file ) )
+        }
+
+        const photosUrls = await Promise.all( fileUploadPromises );
+        
+        dispatch(  setFotosToActiveNote( photosUrls ) );
 
     }
 };

@@ -17,19 +17,13 @@ export const fileUpload = async( file ) => {
             body: formData
         });
 
-        console.log(resp)
-
         if ( !resp.ok ) throw new Error('No se pudo subir imagen')
 
         const cloudResponse = await resp.json();
-
-        console.log(cloudResponse);
-
         return cloudResponse.secure_url;
 
     } catch (error) {
         console.log(error);
         throw new Error( error.message );
     }
-
-} 
+}; 
