@@ -7,21 +7,32 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "jest --watchAll"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.26.9",
+    "@babel/preset-react": "^7.26.3",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^6.4.6",
     "@mui/material": "^6.4.6",
     "@reduxjs/toolkit": "^2.6.1",
+    "@testing-library/react": "^16.2.0",
+    "@types/jest": "^29.5.14",
+    "babel-jest": "^29.7.0",
     "firebase": "^11.4.0",
+    "i": "^0.3.7",
     "install": "^0.13.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "npm": "^11.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^6.29.0",
-    "sweetalert2": "^11.17.2"
+    "sweetalert2": "^11.17.2",
+    "whatwg-fetch": "^3.6.20"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
