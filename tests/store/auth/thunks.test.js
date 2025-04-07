@@ -79,9 +79,6 @@ describe('Pruebas en authThunks', () => {
         expect( dispatch ).toHaveBeenCalledWith( checkingCredentials() );
         expect( dispatch ).toHaveBeenCalledWith( logout( logoutData.errorMessage ) );
 
-
-
-
     });
 
 
@@ -101,9 +98,21 @@ describe('Pruebas en authThunks', () => {
         expect( dispatch ).toHaveBeenCalledWith( login( demoUser ) );
 
     });
-    
 
 
+    test('startCreatingUserWithEmailPassword debe llamar checkingCredentials y el logout', async() => {
+
+        const logoutData = { ok: false, errorMessage: 'Error en el email' };
+        const formData = { email: demoUser.email, password: '123456', displayName: demoUser.displayName }
+
+        await registerUserWithEmailPassword.mockResolvedValue( logoutData );
+
+        await startCreatingUserWithEmailPassword( formData )( dispatch );
+
+        expect( dispatch ).toHaveBeenCalledWith( checkingCredentials() );
+        expect( dispatch ).toHaveBeenCalledWith( logout( { errorMessage: logoutData.errorMessage} )  );
+
+    });
 
 
 
