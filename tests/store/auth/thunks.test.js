@@ -1,6 +1,7 @@
-import { signInWithGoogle } from '../../../src/firebase/providers';
+import { signInWithGoogle, loginWithEmailPassword, logoutFirebase, registerUserWithEmailPassword } from '../../../src/firebase/providers';
 import { checkingCredentials, login, logout } from '../../../src/store/auth/authSlice';
-import { checkingAuthentication, startGoogleSignIn } from '../../../src/store/auth/thunks';
+import { checkingAuthentication, startGoogleSignIn, startLoginWithEmailPassword, startLogout, startCreatingUserWithEmailPassword } from '../../../src/store/auth/thunks';
+import { clearNotesLogout } from '../../../src/store/journal/journalSlice';
 import { demoUser } from '../../fixtures/authFixtures';
 
 jest.mock('../../../src/firebase/providers');
@@ -44,6 +45,75 @@ describe('Pruebas en authThunks', () => {
         expect( dispatch ).toHaveBeenCalledWith( checkingCredentials() );        
         expect( dispatch ).toHaveBeenCalledWith( logout( logoutData.errorMessage ) );        
 
+
+    });
+
+    test('startLoginWithEmailPassword debe de llamar checkingCredentials y el login', async() => {
+
+        const loginData = { ok: true, ...demoUser };
+
+        const formData = { email: demoUser.email, password: '123456' };
+
+
+        await loginWithEmailPassword.mockResolvedValue( loginData );
+
+
+        await startLoginWithEmailPassword( formData )( dispatch );
+
+        expect( dispatch ).toHaveBeenCalledWith( checkingCredentials() );
+        expect( dispatch ).toHaveBeenCalledWith( login( loginData ) );
+
+    });
+
+
+    test('startLoginWithEmailPassword debe de llamar checkingCredentials y el logout', async() => {
+
+        const logoutData = { ok: false, errorMessage: 'Error en el email' };
+
+        const formData = { email: demoUser.email, password: '123456' };
+
+        await loginWithEmailPassword.mockResolvedValue( logoutData );
+
+        await startLoginWithEmailPassword( formData )( dispatch );
+
+        expect( dispatch ).toHaveBeenCalledWith( checkingCredentials() );
+        expect( dispatch ).toHaveBeenCalledWith( logout( logoutData.errorMessage ) );
+
+
+
+
+    });
+
+
+
+    test('startCreatingUserWithEmailPassword debe llamar el checkingCredential, el registerUserWithEmailPassword y el login', async() => {
+
+        const loginData = { ok: true, ...demoUser };
+
+        const formData = { email: demoUser.email, password: '12345', displayName: demoUser.displayName };
+
+
+        await registerUserWithEmailPassword.mockResolvedValue( loginData );
+
+        await startCreatingUserWithEmailPassword( formData )( dispatch );
+
+        expect( dispatch ).toHaveBeenCalledWith( checkingCredentials() );
+        expect( dispatch ).toHaveBeenCalledWith( login( demoUser ) );
+
+    });
+    
+
+
+
+
+
+    test('startLogout debe de llamar logoutFireBase, clearNotes y logout', async() => {
+
+        await startLogout()( dispatch );
+
+        expect( logoutFirebase ).toHaveBeenCalled();
+        expect( dispatch ).toHaveBeenCalledWith( clearNotesLogout() );
+        expect( dispatch ).toHaveBeenCalledWith( logout() );
 
     });
 
