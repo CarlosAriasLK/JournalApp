@@ -15,18 +15,18 @@ export const journalSlice = createSlice({
             state.isSaving = true;
         },
 
-        addNewEmptyNote: ( state, action ) => {
-            state.notes.push( action.payload );
+        addNewEmptyNote: ( state, { payload } ) => {
+            state.notes.push( payload );
             state.isSaving = false;
         },
 
-        setActiveNote: ( state, action ) => {
-            state.active = action.payload;
+        setActiveNote: ( state, { payload } ) => {
+            state.active = payload;
             state.messageSaved = '';
         },
 
-        setNotes: ( state, action ) => {
-            state.notes = action.payload;
+        setNotes: ( state, { payload } ) => {
+            state.notes = payload;
         },
 
         setSaving: ( state ) => {
@@ -34,21 +34,21 @@ export const journalSlice = createSlice({
             state.messageSaved = '';
         },
 
-        updateNote: ( state, action ) => {
+        updateNote: ( state, { payload } ) => {
             state.isSaving = false;
             state.notes = state.notes.map( note => {
 
-                if ( note.id === action.payload.id ) {
-                    return action.payload;
+                if ( note.id === payload.id ) {
+                    return payload;
                 }
                 return note;
             });
 
-            state.messageSaved = `${ action.payload.title }, actualizada correctamente`;
+            state.messageSaved = `${ payload.title }, actualizada correctamente`;
         },
 
-        setFotosToActiveNote: ( state, action ) => {
-            state.active.imageUrls = [ ...state.active.imageUrls, ...action.payload ];
+        setFotosToActiveNote: ( state, { payload } ) => {
+            state.active.imageUrls = [ ...state.active.imageUrls, ...payload ];
             state.isSaving = false;
         },
 
@@ -59,10 +59,10 @@ export const journalSlice = createSlice({
             state.active = null;
         }, 
 
-        deleteNoteById: ( state, action ) => {
+        deleteNoteById: ( state, { payload } ) => {
             
             state.active = null;
-            state.notes = state.notes.filter( note => note.id !== action.payload );
+            state.notes = state.notes.filter( note => note.id !== payload );
 
         },   
 
