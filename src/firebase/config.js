@@ -7,6 +7,8 @@ import { getFirestore } from 'firebase/firestore/lite';
 
 // Your web app's Firebase configuration
 
+console.log( import.meta.env )
+
 // DEV/Prod
 const firebaseConfig = {
   apiKey: "AIzaSyDrU7ndRd676dZeh1gjfQh4UU-1v8ewSqU",
