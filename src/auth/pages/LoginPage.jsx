@@ -30,17 +30,13 @@ export const LoginPage = () => {
     e.preventDefault();
 
     if ( !isFormValid ) return;
-
     dispatch( startLoginWithEmailPassword({ email, password }) )
-
   }
 
   const onGoogleSignIn = () => {
     dispatch( startGoogleSignIn() );
     console.log("onGoolgeSignIn")
   }
-  
-  
   
   return (
     <AuthLayout title="login">
