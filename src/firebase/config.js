@@ -15,7 +15,10 @@ const {
   VITE_STORAGEBUCKET,
   VITE_MESSAGINGSENDERID,
   VITE_APPID,
-} = getEnvironments();
+} = getEnvironments(); 
+// Si esta en desarrollo/produccion se carga el .env ( import.meta.env ). 
+// Pero si está en testing se carga el .env.test ( process.env ).
+
 
 //console.log( import.meta.env ) // Funciona en desarrollo pero no en testing
 //console.log( process.env ) // Funciona en testing pero no en desarrollo
