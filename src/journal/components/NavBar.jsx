@@ -19,6 +19,7 @@ export const NavBar = ({ drawerWidth = 240 }) => {
                 width: { sm: `calc(100% - ${ drawerWidth }px)` },
                 ml: { sm: `${ drawerWidth }px` }
             }}    
+            className='appbar-glass'
         >
 
             <Toolbar>
@@ -31,11 +32,12 @@ export const NavBar = ({ drawerWidth = 240 }) => {
                 </IconButton>
                 
                 <Grid container direction='row' justifyContent='space-between' alignItems='center'>
-                    <Typography variant='h6' noWrap component='div'> JournalApp </Typography>
+                    <Typography variant='h6' noWrap component='div' aria-label='Título de la aplicación'> Journal App </Typography>
 
                     <IconButton 
                         color='error'
                         onClick={ onLogout }
+                        aria-label='Cerrar sesión'
                     >
                         <LogoutOutlined />
                     </IconButton>

@@ -73,12 +73,15 @@ export const NoteView = () => {
                     ref={ fileInputRef }
                     onChange={ onFileInputChange } 
                     style={{ display: 'none' }}
+                    aria-hidden
                 />
 
                 <IconButton
                     color='primary'
                     disabled={ isSaving }
                     onClick={ () => fileInputRef.current.click() }
+                    aria-label='Subir imágenes'
+                    title='Subir imágenes'
                 >
                     <UploadOutlined />
                 </IconButton>
@@ -87,10 +90,12 @@ export const NoteView = () => {
                     disabled={ isSaving } 
                     onClick={ onSaveNote }
                     color="primary" 
-                    sx={{ padding: 2 }} 
+                    sx={{ padding: 1, mb: 1, ml: 2 }} 
+                    className={`btn-pulse ${isSaving ? 'saving' : ''}`}
+                    aria-live='polite'
                 >
                     <SaveOutlined sx={{ fontSize: 30, mr: 1 }} />
-                    Guardar
+                    { isSaving ? 'Guardando...' : 'Guardar' }
                 </Button>
             </Grid>
 

@@ -1,8 +1,78 @@
-# React + Vite
+# Journal App — Diseño y animaciones mejoradas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Una aplicación de diario moderna construida con React y Material-UI. Este repositorio contiene una versión estilizada del proyecto original, con mejoras visuales, paleta de colores, animaciones y microinteracciones pensadas para mostrar en un portafolio.
 
-Currently, two official plugins are available:
+Características principales:
+- Panel lateral con lista de notas.
+- Editor de notas con subida de imágenes y galería.
+- Estado de autenticación (login / register) integrado con Firebase.
+- Tema oscuro personalizado y componentes con glassmorphism ligero.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Tecnologías
+- React 18
+- Vite (dev server)
+- Material-UI (MUI)
+- Redux Toolkit
+- Firebase (Auth + Firestore + Storage)
+- Animate.css (utilizada junto con animaciones CSS personalizadas)
+
+Mejoras visuales y de interacción
+- Tema oscuro personalizado (`src/theme/purpleTheme.js`) con tipografía y overrides de componentes.
+- Variables CSS y estilos globales en `src/styles.css` (gradientes, glass effect, animaciones, pulses).
+- Microinteracciones: hover en tarjetas, animaciones de entrada (fade-in-up), efecto pulse en botón Guardar cuando está guardando.
+- Galería de imágenes con efecto hover y transición suave.
+
+Instalación
+
+1. Clonar el repositorio:
+
+```cmd
+git clone https://github.com/CarlosAriasLK/JournalApp.git
+cd JournalApp
+```
+
+2. Instalar dependencias:
+
+```cmd
+npm install
+```
+
+3. Variables de entorno
+
+Configura tu Firebase en `src/firebase/config.js`. Puedes usar `src/helpers/getEnvironments.js` como referencia para leer variables.
+
+4. Ejecutar en desarrollo:
+
+```cmd
+npm run dev
+```
+
+Estructura relevante
+- `src/theme/` — Tema global MUI.
+- `src/styles.css` — Estilos globales, variables y animaciones.
+- `src/journal/components/` — Componentes reutilizables (NavBar, SideBar, ImageGallery, etc.).
+- `src/journal/views/NoteView.jsx` — Editor de notas y botones principales.
+
+Personalización (rápida)
+- Cambiar paleta: editar `purpleTheme.js`.
+- Ajustar animaciones: editar keyframes en `src/styles.css`.
+- Agregar nuevas microinteracciones: usar las utilidades `.fade-in-up`, `.note-card`, `.btn-pulse`.
+
+Preparado para el portafolio
+
+Si quieres exportar esta pantalla para tu portafolio, te recomiendo:
+- Grabar una demo corta (10–20s) mostrando la entrada de la app, creación/guardado de nota y la galería de imágenes.
+- Tomar capturas de pantalla en 3 tamaños: escritorio, tablet y móvil.
+- Añadir un pequeño README en el repositorio público con las tecnologías usadas y qué mejoras hiciste (colores, animaciones, accesibilidad).
+
+Contribuciones
+
+Este proyecto está preparado para uso personal. Si deseas contribuir, abre un issue o un PR con una descripción de los cambios.
+
+Licencia
+
+MIT — si vas a usar el proyecto en tu portafolio, puedes mantenerlo como base y personalizarlo a tu gusto.
+
+---
+
+Si quieres que aplique más cambios visuales (una paleta alternativa, animaciones por scroll, modo claro/oscuro, o ilustraciones/íconos personalizados), dime qué prefieres y lo implemento.

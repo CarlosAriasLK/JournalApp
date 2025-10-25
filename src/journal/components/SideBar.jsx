@@ -23,8 +23,9 @@ export const SideBar = ({ drawerWidth = 240 }) => {
                 }}
             >
                 
-                <Toolbar>
-                    <Typography variant="h6" noWrap component='div'>
+                <Toolbar className='sidebar-header'>
+                    <span className='avatar-small' aria-hidden='true' />
+                    <Typography variant="h5" noWrap component='div' title={displayName}>
                         { displayName }
                     </Typography>
                 </Toolbar>
